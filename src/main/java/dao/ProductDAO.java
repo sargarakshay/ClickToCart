@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ProductDAO {
     public int createProduct(Product product) throws BusinessException;
+    public List<Product> viewProduct();
 }

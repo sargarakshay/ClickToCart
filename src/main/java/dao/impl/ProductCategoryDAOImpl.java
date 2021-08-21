@@ -37,6 +37,24 @@ public class ProductCategoryDAOImpl implements ProductCategoryDAO {
     }
 
     @Override
+    public ProductCategory getProductCategoryByProductCategoryId(int productCategoryId) throws BusinessException {
+        ProductCategory productCategory = new ProductCategory();
+        try(Connection connection = MySQLDBConnection.getConnection()) {
+            String sql = "SELECT productCategoryId, productCategoryName FROM productCategory WHERE productCategoryId=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, productCategoryId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                productCategory.setProductCategoryId(resultSet.getInt("productCategoryId"));
+                productCategory.setProductCategoryName(resultSet.getString("productCategoryName"));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new BusinessException("Internal error occurred! contact systemAdmin");
+        }
+        return productCategory;
+    }
+
+    @Override
     public int addCategory(ProductCategory productCategory) {
         return 0;
     }

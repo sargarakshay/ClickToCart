@@ -12,13 +12,13 @@ public class ProductService implements ProductRepository {
 
     @Override
     public int createProduct(Product product) throws BusinessException {
-        int isSucessfull;
+        int productId;
         if (product.getProductName().length() != 0) {
-            isSucessfull = productDAO.createProduct(product);
+            productId = productDAO.createProduct(product);
         } else {
             throw new BusinessException("Invalid Product Details");
         }
-        return isSucessfull;
+        return productId;
     }
 
     @Override

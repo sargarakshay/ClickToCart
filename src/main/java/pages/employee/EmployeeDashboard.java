@@ -27,6 +27,7 @@ public class EmployeeDashboard {
     CustomerRepository customerRepository = new CustomerService();
     CustomerSearchRepository customerSearchRepository = new CustomerSearchService();
     ProductSearchRepository productSearchRepository = new ProductSearchService();
+    ProductPage productPage = new ProductPage();
     OrderPage orderPage = new OrderPage();
     OrderDAO orderDAO = new OrderDAOImpl();
     Scanner scanner = new Scanner(System.in);
@@ -74,6 +75,8 @@ public class EmployeeDashboard {
                                 log.info("| " + customer.getCustomerId() + ". " + customer.getCustomerName());
                             }
                             log.info("+------------------------------+");
+                            log.info("");
+                            log.info("+------------------------------+");
                             log.info("| 1. Goto Dashboard            |");
                             log.info("+------------------------------+");
                             log.info("| Enter your choice...         |");
@@ -109,16 +112,15 @@ public class EmployeeDashboard {
                         orderPage.orderedProductDetailEmployee(orderOption);
                         break;
                     case 3:
-                        log.info("Under Construction 3");
+                        productPage.manageProducts();
                         break;
                     case 4:
                         log.info("");
                         log.info("Oh no! You're leaving");
                         log.info("Bye!!");
-                        log.info("");
                         System.exit(0);
                     default:
-                        log.warn("Invalid User Input : Please enter numbers between (1-5)...");
+                        log.warn("Invalid User Input : Please enter numbers between (1-4)...");
                 }
             } catch (InterruptedException | BusinessException | NumberFormatException e) {
                 log.warn(e.getMessage());

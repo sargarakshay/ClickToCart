@@ -64,6 +64,7 @@ public class CartPage {
                     log.info("| Choose product to Buy...     |");
                     cartChoice = Integer.parseInt(scanner.nextLine());
                     log.info("+------------------------------+");
+                    log.info("");
                     productToBuy(customer, cartChoice);
                 } else {
                     Thread.sleep(500);

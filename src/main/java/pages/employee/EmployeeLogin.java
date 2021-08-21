@@ -39,7 +39,6 @@ public class EmployeeLogin {
                         log.info("\nLogin Sucessfull!!!");
                         Thread.sleep(1000);
                         log.info("Please wait, Redirecting to your Dashboard!");
-                        Thread.sleep(1500);
                         employeeDashboard.employeeDashboard();
                     } else {
                         log.info("|                                 |");
