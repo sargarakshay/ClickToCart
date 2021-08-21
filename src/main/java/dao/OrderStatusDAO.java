@@ -1,7 +1,7 @@
-package repository;
+package dao;
 
 import exception.BusinessException;
 
-public interface OrderStatusRepository {
+public interface OrderStatusDAO {
     public int updateOrderStatus(int orderStatusId, int orderId) throws BusinessException;
 }

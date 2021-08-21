@@ -126,6 +126,5 @@ public class CustomerDashboard {
             log.info("Please login to continue");
             log.info("You will be redirected to your Login portal in 2 seconds...");
         }
-        scanner.close();
     }
 }

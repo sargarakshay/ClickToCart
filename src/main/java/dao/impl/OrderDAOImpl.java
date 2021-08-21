@@ -69,4 +69,36 @@ public class OrderDAOImpl implements OrderDAO {
         }
         return orderList;
     }
+
+    @Override
+    public List<Order> viewAllOrders() throws BusinessException {
+        List<Order> orderList = new ArrayList<>();
+        try(Connection connection = MySQLDBConnection.getConnection()) {
+            String sql = "SELECT o.orderId, o.orderCustomerId, o.orderProductId, o.orderQuantity, o.orderTotal, o.orderStatusId, os.orderStatusType FROM `order` o JOIN orderstatus os ON o.orderStatusId = os.orderStatusId ";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order();
+                Product product = new Product();
+                Customer customerObj = new Customer();
+                OrderStatus orderStatus = new OrderStatus();
+                order.setOrderId(resultSet.getInt("orderId"));
+                customerObj.setCustomerId(resultSet.getInt("orderCustomerId"));
+                product.setProductId(resultSet.getInt("orderProductId"));
+                order.setOrderQuantity(resultSet.getInt("orderQuantity"));
+                order.setOrderTotal(resultSet.getDouble("orderTotal"));
+                orderStatus.setOrderStatusId(resultSet.getInt("orderStatusId"));
+                orderStatus.setOrderStatusType(resultSet.getString("orderStatusType"));
+
+                order.setOrderStatus(orderStatus);
+                order.setCustomer(customerObj);
+                order.setProduct(product);
+                orderList.add(order);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            log.warn(e);
+            throw new BusinessException("Internal error occurred! contact systemAdmin");
+        }
+        return orderList;
+    }
 }

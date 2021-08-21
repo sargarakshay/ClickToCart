@@ -1,6 +1,5 @@
 package pages.employee;
 
-import exception.BusinessException;
 import model.Customer;
 import org.apache.log4j.Logger;
 import pages.customer.CustomerLogin;
@@ -13,7 +12,8 @@ public class EmployeeLogin {
     private static final Logger log = Logger.getLogger(CustomerLogin.class);
     Scanner scanner = new Scanner(System.in);
     EmployeeRepository employeeRepository = new EmployeeService();
-    public void customerLogin() {
+    EmployeeDashboard employeeDashboard = new EmployeeDashboard();
+    public void employeeLogin() {
 
         boolean isSucessfull = false;
         do {
@@ -28,7 +28,7 @@ public class EmployeeLogin {
             log.info("| Enter Username :                |");
             String employeeUsername = scanner.nextLine();
             try {
-                if (employeeRepository.isEmployeePasswordAlreadyExist(employeeUsername)) {
+                if (employeeRepository.isEmployeeUsernameAlreadyExist(employeeUsername)) {
                     log.info("| Enter Password :                |");
                     String employeePassword = scanner.nextLine();
                     if (employeeRepository.isEmployeePasswordAlreadyExist(employeePassword)) {
@@ -38,9 +38,9 @@ public class EmployeeLogin {
                         Thread.sleep(1000);
                         log.info("\nLogin Sucessfull!!!");
                         Thread.sleep(1000);
-                        log.info("Please wait...Redirecting to your Dashboard");
+                        log.info("Please wait, Redirecting to your Dashboard!");
                         Thread.sleep(1500);
-                        //customerDashboard.customerDashboard(customer);
+                        employeeDashboard.employeeDashboard();
                     } else {
                         log.info("|                                 |");
                         log.info("+---------------------------------+");

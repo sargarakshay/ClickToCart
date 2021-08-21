@@ -16,4 +16,11 @@ public class CustomerSearchService implements CustomerSearchRepository {
 
         return customer;
     }
+
+    @Override
+    public Customer searchCustomerByCustomerId(int customerId) throws BusinessException {
+        Customer customer;
+        customer = customerSearchDAO.searchCustomerByCustomerId(customerId);
+        return customer;
+    }
 }

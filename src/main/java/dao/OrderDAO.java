@@ -11,4 +11,5 @@ import java.util.List;
 public interface OrderDAO {
     public int addProductToOrder(Order order) throws BusinessException;
     public List<Order> viewOrder(Customer customer) throws BusinessException;
+    public List<Order> viewAllOrders() throws BusinessException;
 }

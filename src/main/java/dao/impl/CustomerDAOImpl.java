@@ -100,4 +100,14 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
         return false;
     }
+
+    @Override
+    public Customer viewCustomerByOrderId() throws BusinessException {
+        try(Connection connection = MySQLDBConnection.getConnection()) {
+            String sql = "";
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new BusinessException("Internal error occurred! contact systemAdmin");
+        }
+        return null;
+    }
 }

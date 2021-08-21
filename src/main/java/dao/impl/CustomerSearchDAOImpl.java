@@ -36,4 +36,27 @@ public class CustomerSearchDAOImpl implements CustomerSearchDAO {
         }
         return customer;
     }
+
+    @Override
+    public Customer searchCustomerByCustomerId(int customerId) throws BusinessException {
+        Customer customer = new Customer();
+        try(Connection connection = MySQLDBConnection.getConnection()) {
+            String sql = "SELECT customerId, customerName, customerUsername, customerPassword FROM customer WHERE customerId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, customerId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                customer.setCustomerId(resultSet.getInt("customerId"));
+                customer.setCustomerName(resultSet.getString("customerName"));
+                customer.setCustomerUsername(resultSet.getString("customerUsername"));
+                customer.setCustomerPassword(resultSet.getString("customerPassword"));
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            log.warn(e);
+            throw new BusinessException("Internal error occurred! contact systemAdmin");
+        }
+        return customer;
+    }
 }

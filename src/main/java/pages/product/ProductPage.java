@@ -52,14 +52,14 @@ public class ProductPage {
                         log.info("");
                         if (productQuantity > 0) {
                             cartPage.addProductToCard(productQuantity, customer, product);
-                            log.info("Please wait...Redirecting to your Cart");
+                            log.info("Please wait, Redirecting to your Cart!");
                             Thread.sleep(1500);
                         } else {
                             log.info("Product Quantity must be positive.");
                         }
                         break;
                     case 2:
-                        log.info("Please wait...Redirecting to your Dashboard");
+                        log.info("Please wait, Redirecting to your Dashboard!");
                         Thread.sleep(1500);
                         break;
                     default:

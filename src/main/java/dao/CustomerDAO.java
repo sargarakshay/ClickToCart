@@ -11,4 +11,5 @@ public interface CustomerDAO {
     public List<Customer> viewCustomer() throws BusinessException;
     public boolean isUsernameAlreadyExist(String customerUsername) throws BusinessException;
     public boolean isPasswordAlreadyExist(String customerUsername, String customerPassword) throws BusinessException;
+    public Customer viewCustomerByOrderId() throws BusinessException;
 }

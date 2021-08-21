@@ -1,6 +1,7 @@
 package pages;
 import org.apache.log4j.Logger;
 import pages.customer.CustomerLogin;
+import pages.employee.EmployeeLogin;
 
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ public class ClickToCart {
     private static final Logger log = Logger.getLogger(ClickToCart.class);
     public static void main(String[] args) {
         CustomerLogin customerLogin = new CustomerLogin();
+        EmployeeLogin employeeLogin = new EmployeeLogin();
 
         int menuChoice;
         Scanner scanner = new Scanner(System.in);
@@ -36,9 +38,9 @@ public class ClickToCart {
                         break;
                     case 2:
                         customerLogin.customerLogin();
-                        continue;
+                        break;
                     case 3:
-                        log.info("Under Construction Employee Login");
+                        employeeLogin.employeeLogin();
                         break;
                     case 4:
                         log.info("Oh no! You're leaving");
